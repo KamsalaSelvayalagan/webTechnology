@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" type="text/css" href="signupPage.css">
+</head>
+<body>
+    <header>
+        <h1>Learn Microsoft Office</h1>
+    </header>
+
+    <div class="container">
+        <h2>Sign up</h2>
+        <form method="post">
+            <label for="newUserName">User name:</label><br>
+            <input type="text" id="newUserName" name="newUserName"><br>
+            <label for="newPass">Password:</label><br>
+            <input type="password" id="newPass" name="newPass"><br>
+            <label for="confirmPass">Confirm Password:</label><br>
+            <input type="password" id="confirmPass" name="confirmPass"><br>
+            <input type="submit" id="signupSubmit" name="signupSubmit" value="Sign up"><br>
+            <p>Or sign up with</p>
+            <a href="#">Facebook</a>/<a href="#">Google</a><br>
+            <p>Already have an account? <a href="loginPage.html">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>
