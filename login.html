@@ -10,9 +10,8 @@
         <h1 id="formTitle">Login</h1>
         <nav>
             <ul>
-                <li><a href="new.html">Home</a></li>
+                <li><a href="Home.html">Home</a></li>
                 <li><a href="about.html" target="_blank">About</a></li>
-                <li><a href="contact.html" target="_blank">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -27,25 +26,36 @@
 			<input type="submit" name="loginSubmit" value="Login"><br>
 			Or Login with<br>
 			<a href="#">Facebook </a>/<a href="#">Google</a><br>
-			Not a member? <a href="#" id="signupLink">Sign up</a><br>
+			Not a member? <a href="signupPage.html" id="signupLink">Sign up</a><br>
 		</form>
 
 
-        <form id="signupForm" method="post" action="signup.php" style="display:none;">
+		<form id="signupForm" method="post" action="signup.php" style="display:none;">
 			<h2 style="color:black; text-align:center">SIGNUP</h2>
 			User name: <br>
 			<input type="text" name="newUserName"><br>
 			Password<br>
-			<input type="password" name="newPass" id="signupPass"><span class="password-toggle" onclick="togglePassword('signupPass')"></span><br>
+			<input type="password" name="newPass" id="password"><span class="password-toggle" onclick="togglePassword('password')"></span><br>
+			<div id="message">
+			<p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+			<p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+			<p id="number" class="invalid">A <b>number</b></p>
+			<p id="length" class="invalid">Minimum <b>8 characters</b></p>
+			</div>
 			Confirm Password<br>
-			<input type="password" name="confirmPass"><br>
-			<input type="submit" name="signupSubmit" value="Sign up"><br>
-			Already have an account? <a href="#" id="loginLink">Sign in</a><br>
-			</form>
-    </div>
+			<input type="password" name="confirmPass" id="confirmPass">
+			<div id="passwordMessage" style="color:red"></div> <!-- Password validation message -->
+			<br>
+			<input type="submit" name="signupSubmit" value="Sign up" onclick="return validatePassword();"><br>
+			Already have an account? <a href="login.html" id="loginLink">Sign in</a><br>
+		</form>
+
+
+
+        
 
     <script>
-        // JavaScript to toggle between sign-in and sign-up forms
+
         document.getElementById('signupLink').addEventListener('click', function(event) {
             event.preventDefault();
             document.getElementById('loginForm').style.display = 'none'; // Hide login form
@@ -73,6 +83,87 @@
 			}
 		}
 		
+		var myInput = document.getElementById("password");
+		var letter = document.getElementById("letter");
+		var capital = document.getElementById("capital");
+		var number = document.getElementById("number");
+		var length = document.getElementById("length");
+
+			myInput.onfocus = function() {
+			document.getElementById("message").style.display = "block";
+		}
+
+			myInput.onblur = function() {
+			document.getElementById("message").style.display = "none";
+		}
+
+			myInput.onkeyup = function() {
+			var lowerCaseLetters = /[a-z]/g;
+			if(myInput.value.match(lowerCaseLetters)) {
+				letter.classList.remove("invalid");
+				letter.classList.add("valid");
+			} else {
+				letter.classList.remove("valid");
+				letter.classList.add("invalid");
+		}
+
+		var upperCaseLetters = /[A-Z]/g;
+			if(myInput.value.match(upperCaseLetters)) {
+				capital.classList.remove("invalid");
+				capital.classList.add("valid");
+			} else {
+				capital.classList.remove("valid");
+				capital.classList.add("invalid");
+		}
+
+		var numbers = /[0-9]/g;
+			if(myInput.value.match(numbers)) {
+				number.classList.remove("invalid");
+				number.classList.add("valid");
+			} else {
+				number.classList.remove("valid");
+				number.classList.add("invalid");
+		}
+
+			if(myInput.value.length >= 8) {
+				length.classList.remove("invalid");
+				length.classList.add("valid");
+			} else {
+				length.classList.remove("valid");
+				length.classList.add("invalid");
+			}
+		}
+		
+		function validatePassword() {
+			var isValid = true;
+			var messages = [];
+
+			if (!letter.classList.contains("valid")) {
+				messages.push("Password must contain a lowercase letter.");
+				isValid = false;
+			}
+
+			if (!capital.classList.contains("valid")) {
+				messages.push("Password must contain an uppercase letter.");
+				isValid = false;
+			}
+
+			if (!number.classList.contains("valid")) {
+				messages.push("Password must contain a number.");
+				isValid = false;
+			}
+
+			if (!length.classList.contains("valid")) {
+				messages.push("Password must be at least 8 characters long.");
+				isValid = false;
+			}
+
+			if (!isValid) {
+				document.getElementById("passwordMessage").innerHTML = messages.join("<br>");
+			}
+
+			return isValid;
+		}
     </script>
 </body>
 </html>

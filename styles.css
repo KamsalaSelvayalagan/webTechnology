@@ -1,0 +1,48 @@
+.img1 {
+    float: right;
+    height: 50%;
+    width: 50%;
+}
+
+.img2 {
+    float: right;
+}
+
+.paraLeft {
+    text-align: left;
+}
+
+.step {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.step .text {
+    flex: 1;
+    text-align: left;
+    padding-left: 10%;
+}
+
+.step .image {
+    flex: 1;
+    text-align: right;
+    padding-right: 10%;
+}
+
+.step img {
+    width: 50%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .step {
+        flex-direction: column;
+    }
+
+    .step .text,
+    .step .image {
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+}

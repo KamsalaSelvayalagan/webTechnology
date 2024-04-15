@@ -118,3 +118,21 @@ a:hover {
 .password-toggle.active {
     background-image: url('eye_icon.png'); /* Replace 'eye-slash.svg' with your icon file */
 }
+
+#message {
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+
+#message p {
+    margin: 5px 0;
+}
+
+#message p.valid {
+    color: green;
+}
+
+#message p.invalid {
+    color: red;
+}
